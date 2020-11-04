@@ -1,25 +1,63 @@
 import React from 'react';
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 import './App.css';
+import { UL, Nav, LINK, MainTitle, PageLayout, Element, ElementLayout, SecondaryTitle } from './AppStyle';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <div>
+          <Nav>
+            <div>svv logo</div>
+            <UL>
+              <li>
+                <LINK to="/prosjektleder">Prosjektleder</LINK>
+              </li>
+              <li>
+                <LINK to="/kontroll">Kontroll og godkjenning</LINK>
+              </li>
+              <li>
+                <LINK to="/leverandor">Leverandører</LINK>
+              </li>
+            </UL>
+          </Nav>
+
+          <Switch>
+            <Route path="/kontroll">
+              <PageLayout>
+                <MainTitle>Kontroll og godkjenning</MainTitle>
+              </PageLayout>
+            </Route>
+            <Route path="/leverandor">
+              <PageLayout>
+                <MainTitle>Leverandør</MainTitle>
+              </PageLayout>
+            </Route>
+            <Route path="/prosjektleder" >
+              <PageLayout>
+                <MainTitle>Prosjektleder</MainTitle>
+                <ElementLayout>
+                  <Element>Visualisering av Mengder: Stål og betong</Element>
+                  <Element>Statuskoder som mengdene har</Element>
+                  <Element>Forbrukt CO2</Element>
+                  <Element>Armering betong</Element>
+                  <Element>Mengder snakke med ISY PØ</Element>
+                </ElementLayout>
+              </PageLayout>
+            </Route>
+            <Route path="/" >
+              <PageLayout>
+                <MainTitle>Open Live Center</MainTitle>
+                <SecondaryTitle>Bjørnafjorden Ferjefri E39 SVV</SecondaryTitle>
+              </PageLayout>
+            </Route>
+          </Switch>
+        </div>
+      </Router>
   );
 }
 
